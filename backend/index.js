@@ -10,10 +10,6 @@ app.get('/', (request, response) => {
     return response.status(234).send('Bonjour');
 });
 
-app.listen(PORT, ()=> {
-    console.log("L'app écoute le port : ${PORT}");
-});
-
 mongoose
     .connect(mongoDB_url)
     .then(() => {
