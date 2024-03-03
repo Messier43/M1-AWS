@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <!-- Metas, CSS links, title, etc. -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/fontawesome.css">
+  <link rel="stylesheet" href="assets/css/templatemo-finance-business.css">
+  <link rel="stylesheet" href="assets/css/owl.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  
+  <title>Finance Business - Account Summary</title>
+</head>
+
+<body>
+
+  <!-- Header -->
+<!-- Header -->
+<div class="sub-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-xs-12">
+          <ul class="left-info">
+            <li><a href="#"><i class="fa fa-clock-o"></i>Mon-Fri 09:00-17:00</a></li>
+            <li><a href="#"><i class="fa fa-phone"></i>090-080-0760</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <ul class="right-icons">
+            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+            <li><a href="#"><i class="fa fa-behance"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <header class="">
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-brand" href="index.html"><h2>E-Bank</h2></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="conseiller.html">Conseiller
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="rdv.html">Rendez-vous</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="messagerie.html">Messagerie</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="actu.html">Mes actus</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"><i class="fas fa-user"></i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Page Content -->
+  <div class="page-heading header-text">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+            <h1>Mon compte</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--Boite-->
+  <div class="contact-information">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <!-- Boîte pour afficher le solde -->
+          <div class="balance-box">
+            <h3>Solde</h3>
+            <br>
+            <div class="balance" id="balance-amount">2000000 €</div>
+          </div>
+        </div>
+      </div>
+      <!-- Reste du contenu de votre page -->
+    </div>
+  </div>
+<!--Styles de boite-->
+<style>
+    /* Styles spécifiques pour la boîte de solde */
+    .balance-box {
+  background-color: #a4c639;
+  color: white;
+  text-align: center;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 30px;
+  border-radius: 10px;
+  width: 200px; /* Largeur fixe */
+  height: 120px; /* Hauteur fixe */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+</style>
+<div class="contact-information">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="transaction-table">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Montant</th>
+              </tr>
+            </thead>
+            <tbody id="transaction-table">
+              <tr>
+                <td>2024-02-28</td>
+                <td>Versement</td>
+                <td>10.00 €</td>
+              </tr>
+              <!-- Les transactions seront ajoutées ici dynamiquement -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <footer>
+
+    <div class="container">
+
+      <div class="row">
+
+        <div class="col-md-3 footer-item">
+
+          <h4>E-BANK</h4>
+
+
+          <ul class="social-icons">
+
+            <li><a rel="nofollow" href="https://fb.com/templatemo" target="_blank"><i class="fa fa-facebook"></i></a></li>
+
+            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+
+            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+
+
+          </ul>
+
+        </div>
+
+        <div class="col-md-3 footer-item">
+
+          <h4>Liens Utiles</h4>
+
+          <ul class="menu-list">
+
+            <li><a href="#">Règlementation</a></li>
+
+            <li><a href="#">Résilier un contrat</a></li>
+
+            <li><a href="#">Nos offres</a></li>
+
+            <li><a href="#">Votre banque</a></li>
+
+          </ul>
+
+        </div>
+
+        <div class="col-md-3 footer-item">
+
+
+          <ul class="menu-list">
+
+            <li><a href="#">Garantie des dépots</a></li>
+
+            <li><a href="#">Protection des données personnelles</a></li>
+
+            <li><a href="#">Gestion des cookies</a></li>
+
+            <li><a href="#">Sécurité</a></li>
+
+            <li><a href="#">Mentions générales</a></li>
+
+          </ul>
+
+        </div>
+
+        <div class="col-md-3 footer-item last-item">
+
+          <h4>Nous Contacter</h4>
+
+          <div class="contact-form">
+
+            <form id="contact footer-contact" action="" method="post">
+
+              <div class="row">
+
+                <div class="col-lg-12 col-md-12 col-sm-12">
+
+                  <fieldset>
+
+                    <input name="name" type="text" class="form-control" id="name" placeholder="NOM" required="">
+
+                  </fieldset>
+
+                </div>
+
+                <div class="col-lg-12 col-md-12 col-sm-12">
+
+                  <fieldset>
+
+                    <input name="email" type="text" class="form-control" id="email" pattern="[^ @]*@[^ @]*" placeholder="E-Mail" required="">
+
+                  </fieldset>
+
+                </div>
+
+                <div class="col-lg-12">
+
+                  <fieldset>
+
+                    <textarea name="message" rows="6" class="form-control" id="message" placeholder="Votre Message" required=""></textarea>
+
+                  </fieldset>
+
+                </div>
+
+                <div class="col-lg-12">
+
+                  <fieldset>
+
+                    <button type="submit" id="form-submit" class="filled-button">ENVOYER</button>
+
+                  </fieldset>
+
+                </div>
+
+              </div>
+
+            </form>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+  <div class="sub-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <p>Copyright &copy; 2020 Financial Business Co., Ltd.
+          
+          - Design: <a rel="nofollow noopener" href="https://templatemo.com" target="_blank">TemplateMo</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/custom.js"></script>
+  <script src="assets/js/owl.js"></script>
+  <script src="assets/js/slick.js"></script>
+  <script src="assets/js/accordions.js"></script>
+  <script>
+    // Code JavaScript pour récupérer les transactions
+    $(document).ready(function() {
+      // Exemple de requête AJAX pour récupérer les transactions
+      $.ajax({
+        url: '/transactions', // Endpoint pour récupérer les transactions (à adapter)
+        method: 'GET',
+        success: function(data) {
+          // Supprimer les lignes existantes de la table
+          $('#transaction-table').empty();
+          // Ajouter les nouvelles lignes avec les données des transactions
+          data.forEach(function(transaction) {
+            $('#transaction-table').append(
+              `<tr>
+                <td>${transaction.date}</td>
+                <td>${transaction.description}</td>
+                <td>${transaction.amount}</td>
+              </tr>`
+            );
+          });
+        },
+        error: function(xhr, status, error) {
+          console.error(error); // Gérer les erreurs de la requête AJAX
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
+
