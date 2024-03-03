@@ -61,14 +61,30 @@
             <li class="nav-item active">
               <a class="nav-link" href="actu.html">Mes actus</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#"><i class="fas fa-user"></i></a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-user"></i>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Mon Profil</a>
+                <a class="dropdown-item" href="#">Déconnexion</a>
+              </div>
+              <style>
+              .dropdown-toggle:hover + .dropdown-menu {
+              background-color: #a4c639;
+              }
+
+              .dropdown-menu {
+              background-color: white;
+              }
+              </style>
             </li>
           </ul>
         </div>
       </div>
     </nav>
   </header>
+  
 
   <!-- Page Content -->
   <div class="page-heading header-text">
