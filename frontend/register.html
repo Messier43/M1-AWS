@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -71,7 +73,6 @@ https://templatemo.com/tm-545-finance-business
 
             <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
 
-
           </ul>
 
         </div>
@@ -81,7 +82,6 @@ https://templatemo.com/tm-545-finance-business
     </div>
 
   </div>
-
 
   <header class="">
 
@@ -177,96 +177,54 @@ https://templatemo.com/tm-545-finance-business
 
                   <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Inscription</p>
 
-                  <form class="mx-1 mx-md-4">
+                  <form class="mx-1 mx-md-4" action="" method="post">
 
-                    <!-- <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="Genre" id="formInscriptionGenre1"
-                        value="madame" checked>
-                      <label class="form-check-label" for="formInscriptionGenre1">
-                        Mme
-                      </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="Genre" id="formInscriptionGenre2"
-                        value="monsieur">
-                      <label class="form-check-label" for="formInscriptionGenre2">
-                        Mr
-                      </label>
-                    </div> -->
-                    
                     <br>
                     <div class="d-flex flex-row align-items-center mb-4">
                       <div class="form-outline flex-fill mb-0">
 
                         <label class="form-label" for="formInscriptionNomNaissance">Mon nom de naissance*</label>
-                        <input type="text" id="formInscriptionNomNaissance" class="form-control" />
+                        <input type="text" id="lastName" name="lastName"  class="form-control" />
                       </div>
                     </div>
-
-                    <!-- <div class="d-flex flex-row align-items-center mb-4">
-                      <div class="form-outline flex-fill mb-0">
-                        <label class="form-label" for="formInscriptionNomUsage">Nom</label>
-                        <input type="text" id="formInscriptionNomUsage" class="form-control" />
-                      </div>
-                    </div> -->
 
                     <div class="d-flex flex-row align-items-center mb-4">
                       <div class="form-outline flex-fill mb-0">
                         <label class="form-label" for="formInscriptionPrenom">Mon 1er prénom*</label>
-                        <input type="text" id="formInscriptionPrenom" class="form-control" />
+                        <input type="text" id="firstName" name="firstName"  class="form-control" />
                       </div>
                     </div>
 
                     <div class="d-flex flex-row align-items-center mb-4">
                       <div class="form-outline flex-fill mb-0">
                         <label class="form-label" for="formInscriptionCourriel">Mon adresse email personnelle*</label>
-                        <input type="email" id="formInscriptionCourriel" class="form-control" />
+                        <input type="email" id="email" name="email"  class="form-control" />
                       </div>
                     </div>
 
                     <div class="d-flex flex-row align-items-center mb-4">
                       <div class="form-outline flex-fill mb-0">
                         <label class="form-label" for="formInscriptionCourriel2">Je confirme mon adresse email*</label>
-                        <input type="email" id="formInscriptionCourriel2" class="form-control" />
+                        <input type="email"  class="form-control" />
                       </div>
                     </div>
                     <div class="d-flex flex-row align-items-center mb-4">
                       <div class="form-outline flex-fill mb-0">
                         <label class="form-label" for="formInscriptionCourriel2">mot de passe*</label>
-                        <input type="email" id="formInscriptionCourriel2" class="form-control" />
+                        <input type="email"id="password" name="password"  class="form-control" />
                       </div>
                     </div>
 
                     <div class="d-flex flex-row align-items-center mb-4">
                       <div class="form-outline flex-fill mb-0">
                         <label class="form-label" for="formInscriptionCourriel2">je confirme mon mot de passe*</label>
-                        <input type="email" id="formInscriptionCourriel2" class="form-control" />
+                        <input type="email" class="form-control" />
                       </div>
                     </div>
 
-
-
-                    <!-- <div class="form-check d-flex justify-content-start mb-4">
-                      <input class="form-check-input me-2" type="checkbox" value="" id="formInscriptionConditions" />
-                      <label class="form-check-label" for="form2Example3">
-                        Je suis en accord avec les <a href="#!">conditions d'utilisation</a> et la <a
-                          href="#!">politique de confidentialité</a>.
-                      </label>
-                    </div>
-
-                    <h6>Données Personnelles</h6>
-                    <p>Les données personnelles recueillies ci-dessus sont utilisées par Express Bank, responsable de
-                      traitement, aux fois de traitement de votre demande et pour recevoir des offres commerciales vous
-                      avez donné votre consentement. Les données personnelles assorties d'un astérisque sont
-                      obligatoires, si vous ne souhaitez pas nous les communiquer alors nous ne pourrons traiter votre
-                      demande. Les informations sur les traitements de données et sur l'exercice de vos droits sur ces
-                      données figurent dans la Notice de protection des données personnelles qui vous est fournie par
-                      email.</p>
-                    <br>
-                    <br> -->
                     <br>
                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                      <button type="button" class="btn">S'inscrire</button>
+                      <button type="button" class="btn" onclick="register()">S'inscrire</button>
                     </div>
 
                     <style>
