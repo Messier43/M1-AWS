@@ -9,15 +9,46 @@
   <link rel="stylesheet" href="assets/css/templatemo-finance-business.css">
   <link rel="stylesheet" href="assets/css/owl.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  
   <!-- CSS Bootstrap Datepicker -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
   <!-- jQuery -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <!-- Bootstrap JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
   <!-- Inclure la bibliothèque Moment.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" defer></script>
+
+  <!--<script src="vendor/jquery/jquery.min.js" ></script> A mettre à jour (utiliser nodejs?)-->
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js" defer></script>
+  <script src="assets/js/custom.js" defer></script>
+  <script src="assets/js/owl.js" defer></script>
+  <script src="assets/js/slick.js" defer></script>
+  <script src="assets/js/accordions.js" defer></script>
+  <script>
+    // Code JavaScript pour récupérer les transactions
+    $(document).ready(function() {
+      // Exemple de requête AJAX pour récupérer les transactions
+      $.ajax({
+        url: '/transactions', // Endpoint pour récupérer les transactions (à adapter)
+        method: 'GET',
+        success: function(data) {
+          // Supprimer les lignes existantes de la table
+          $('#transaction-table').empty();
+          // Ajouter les nouvelles lignes avec les données des transactions
+          data.forEach(function(transaction) {
+            $('#transaction-table').append(
+              `<tr>
+                <td>${transaction.date}</td>
+                <td>${transaction.description}</td>
+                <td>${transaction.amount}</td>
+              </tr>`
+            );
+          });
+        },
+        error: function(xhr, status, error) {
+          console.error(error); // Gérer les erreurs de la requête AJAX
+        }
+      });
+    });
+  </script>
   <title>Mon profil</title>
 </head>
 
@@ -609,40 +640,6 @@ $('li.nav-item a.nav-link').filter(function() {
     </div>
   </div>
 
-  <!-- JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/js/custom.js"></script>
-  <script src="assets/js/owl.js"></script>
-  <script src="assets/js/slick.js"></script>
-  <script src="assets/js/accordions.js"></script>
-  <script>
-    // Code JavaScript pour récupérer les transactions
-    $(document).ready(function() {
-      // Exemple de requête AJAX pour récupérer les transactions
-      $.ajax({
-        url: '/transactions', // Endpoint pour récupérer les transactions (à adapter)
-        method: 'GET',
-        success: function(data) {
-          // Supprimer les lignes existantes de la table
-          $('#transaction-table').empty();
-          // Ajouter les nouvelles lignes avec les données des transactions
-          data.forEach(function(transaction) {
-            $('#transaction-table').append(
-              `<tr>
-                <td>${transaction.date}</td>
-                <td>${transaction.description}</td>
-                <td>${transaction.amount}</td>
-              </tr>`
-            );
-          });
-        },
-        error: function(xhr, status, error) {
-          console.error(error); // Gérer les erreurs de la requête AJAX
-        }
-      });
-    });
-  </script>
 </body>
 
 </html>
