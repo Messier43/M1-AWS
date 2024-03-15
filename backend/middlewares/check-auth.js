@@ -10,13 +10,6 @@ const checkAuth = async (request, response, next) => {
         const verifiedAndDecoded = jwt.verify(token,process.env.JWT_SECRET);
         console.log(verifiedAndDecoded);
 
-        ////////////////////// Here are my adds 
-        request.token= token; 
-        
-        
-        
-        
-        // ancien code
         const user = await User.findById(verifiedAndDecoded.userId);
         request.user = user;
         next()

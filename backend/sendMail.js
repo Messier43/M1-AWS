@@ -1,5 +1,5 @@
-import nodemailer from "nodemailer";
 import dotenv from "dotenv";
+import nodemailer from "nodemailer";
 
 dotenv.config();
 
@@ -10,13 +10,13 @@ const generateRandomId = () => {
 }
 
 const transporter = nodemailer.createTransport({
-    service : "gmail",
+    service: "gmail",
     host: "ebanquecontact@gmail.com",
     port: 5555,
     secure: true,
     auth: {
-      user: process.env.email,
-      pass: process.env.password,
+        user: process.env.email,
+        pass: process.env.password,
     },
 });
 
@@ -25,10 +25,10 @@ const randomId = generateRandomId();
 
 const mailOptions = {
     from: {
-        name: 'E-bank', 
-        address: process.env.email, 
+        name: 'E-bank',
+        address: process.env.email,
     },
-    to: ["anaisevin31@gmail.com"], 
+    to: ["anaisevin31@gmail.com"],
     subject: "Bienvenue chez E-Bank", // Ligne d'objet
     text: `Bonjour, votre création de compte a été réussie. Votre identifiant : ${randomId}`, // Corps du message texte
     html: `<p>Bonjour, votre création de compte a été réussie.</p><p><b>Votre identifiant : ${randomId}</b></p>`, // Corps du message HTML
