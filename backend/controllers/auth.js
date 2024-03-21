@@ -3,6 +3,7 @@ import jwt from "jsonwebtoken";
 import validator from 'validator';
 import User from "../models/user.js";
 
+
 export const register = async (request, response) => {
     try {
         // Extraire les données de la requête
@@ -86,10 +87,11 @@ export const register = async (request, response) => {
             iban: iban,
             bic: bic
         });
-
         // Sauvegarder le nouvel utilisateur dans la base de données
         console.log(newUser);
         await newUser.save();
+
+        
         // Envoyer une réponse avec un code de statut 201 indiquant que la création du compte a réussi
         response.status(201).json({ message: "Account created successfully" });
     } catch (error) {

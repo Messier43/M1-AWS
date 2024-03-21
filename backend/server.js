@@ -1,7 +1,9 @@
-import cors from 'cors';
 import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
+// import produitRouter from "./routes/produits.js";
+import cors from 'cors';
+import benefRouter from "./routes/benefs.js";
 import authRouter from "./routes/users.js";
 
 dotenv.config();
@@ -17,8 +19,13 @@ app.get('/', (request, response, next) => {
 });
 
 // authentication
-app.use('/auth', authRouter)
+app.use('/auth', authRouter);
 
+app.use('/beneficiaire', benefRouter);
+
+
+
+// app.use('/produits', produitRouter)
 
 mongoose
     .connect(process.env.mongoDBURL)
@@ -32,3 +39,4 @@ mongoose
     .catch((error) => {
         console.log(error)
     })
+

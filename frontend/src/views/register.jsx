@@ -27,12 +27,10 @@ const Register = () => {
         axios
             .post('http://localhost:5555/auth/register', data)
             .then(() => {
-                //setLoading(false);
                 enqueueSnackbar('Utilisateur créé avec succès', { variant: 'success' });
-                navigate('/');
+                navigate('/login');
             })
             .catch((error) => {
-                //setLoading(false);
                 enqueueSnackbar('Erreur', { variant: 'error' });
                 console.log(error);
             });
@@ -40,7 +38,6 @@ const Register = () => {
     return (
         <div className='p-4'>
             <h1 className='text-3xl my-4'>Ajouter utilisateur</h1>
-            {/* {loading ? <Spinner /> : ''} */}
             <div className='flex flex-col border-2 border-sky-400 rounded-xl w-[600px] p-4 mx-auto'>
                 <div className='my-4'>
                     <label className='text-xl mr-4 text-gray-500'>Nom</label>
