@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import BackButton from '../components/BackButton';
+import BackButton from '../../components/BackButton';
 
 const DetailBenef = () => {
     const [benef, setBenef] = useState({});

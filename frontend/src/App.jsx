@@ -1,14 +1,14 @@
 import React from "react";
 import { Route, Routes } from 'react-router-dom';
 import Home from './views/Home';
-import Login from "./views/login";
-import Register from './views/register';
+import Login from "./views/auth/login";
+import Register from './views/auth/register';
 
-import AjouterBenef from "./views/ajouterBenef";
-import Beneficiaire from './views/beneficiaire';
-import DetailBenef from "./views/detailBenef";
-import ModifierBenef from "./views/modifierBenef";
-import SupprimerBenef from "./views/supprimerBenef";
+import AjouterBenef from "./views/beneficiaire/ajouterBenef";
+import Beneficiaire from './views/beneficiaire/beneficiaire';
+import DetailBenef from "./views/beneficiaire/detailBenef";
+import ModifierBenef from "./views/beneficiaire/modifierBenef";
+import SupprimerBenef from "./views/beneficiaire/supprimerBenef";
 const App = () => {
   return (
     <Routes>
