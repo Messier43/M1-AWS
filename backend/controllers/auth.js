@@ -1,7 +1,36 @@
 import bcrypt from 'bcrypt';
 import jwt from "jsonwebtoken";
+import nodemailer from 'nodemailer';
 import validator from 'validator';
 import User from "../models/user.js";
+
+function sendEmail({ email, firstName, lastName }) {
+    return new Promise((resolve, reject) => {
+        var transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: process.env.email,
+                pass: process.env.password,
+            },
+        });
+
+        const mail_configs = {
+            from: `E-bank <${process.env.email}>`,
+            to: email,
+            subject: "Confirmation d'inscription à E-Bank",
+            text: `Bonjour ${firstName} ${lastName}, votre inscription à E-Bank a été confirmée.`,
+            html: `<p>Bonjour ${firstName} ${lastName}, votre inscription à E-Bank a été confirmée.</p>`,
+        };
+
+        transporter.sendMail(mail_configs, function (error, info) {
+            if (error) {
+                console.log(error);
+                return reject({ message: "An error has occurred" });
+            }
+            return resolve({ message: "Email sent successfully" });
+        });
+    });
+}
 
 
 export const register = async (request, response) => {
@@ -91,7 +120,9 @@ export const register = async (request, response) => {
         console.log(newUser);
         await newUser.save();
 
-        
+        await sendEmail({ email, firstName, lastName });
+
+
         // Envoyer une réponse avec un code de statut 201 indiquant que la création du compte a réussi
         response.status(201).json({ message: "Account created successfully" });
     } catch (error) {
