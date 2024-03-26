@@ -42,6 +42,10 @@ export const register = async (request, response) => {
         if (!firstName || !lastName || !email || !password || !verifyEmail || !verifyPassword) {
             return response.status(400).json({ error: "Tous les champs doivent être remplis" });
         }
+        // // Valider l'email
+        // if (!isEmail(email)) {
+        //     return response.status(400).json({ error: "L'email fourni n'est pas valide" });
+        // }
 
         // // Vérifier que l'email et la vérification de l'email correspondent
         if (email !== verifyEmail) {
@@ -130,7 +134,6 @@ export const register = async (request, response) => {
     }
 };
 
-
 export const login = async (request, response) => {
     try {
         const { email, password } = request.body;
@@ -138,22 +141,29 @@ export const login = async (request, response) => {
 
         // Vérifier si l'utilisateur existe
         if (!user) {
-            return response.status(400).json({ message: "Wrong email and/or password" });
+            return response.status(400).json({ message: "L'email ou le mot de passe est incorrect." });
         }
 
         // Vérifier si le mot de passe est correct
         const passwordMatch = await bcrypt.compare(password, user.password);
         if (!passwordMatch) {
-            return response.status(400).json({ message: "Wrong email and/or password" });
+            return response.status(400).json({ message: "L'email ou le mot de passe est incorrect." });
         }
 
-        // Si l'utilisateur et le mot de passe sont corrects, générer un token JWT
-        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET);
+        // Si l'utilisateur et le mot de passe sont corrects, générer un token JWT qui expire dans 10 minutes
+        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '10m' });
 
+        console.log(token)
         // Envoyer une réponse avec un message de bienvenue, les détails de l'utilisateur et le token JWT
-        response.status(200).json({ message: `Welcome ${user.firstName}`, user, token });
+        response.status(200).json({ message: `Bienvenue ${user.firstName}`, user, token });
     } catch (error) {
         // En cas d'erreur, envoyer une réponse avec un code de statut 500 et le message d'erreur
-        response.status(500).json({ error: error.message });
+        response.status(500).json({ error: "Une erreur est survenue lors de la connexion." });
     }
 }
+
+export const logout = (request, response) => {
+    // Supprimer le token JWT du client en envoyant un cookie avec un token expiré ou aucun token
+    response.cookie('token', '', { expires: new Date(0) }); // Expiration immédiate du cookie
+    response.status(200).json({ message: "Déconnexion réussie" });
+};

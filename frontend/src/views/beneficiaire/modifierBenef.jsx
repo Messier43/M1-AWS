@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import BackButton from '../../components/BackButton';
 
-
 const ModifierBenef = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -12,18 +11,28 @@ const ModifierBenef = () => {
     const navigate = useNavigate();
     const { enqueueSnackbar } = useSnackbar();
     const { id } = useParams();
+    const token = localStorage.getItem('token');
 
     useEffect(() => {
-        axios.get(`http://localhost:5555/beneficiaire/detailBenef/${id}`)
+        if (token) {
+        axios
+            .get(`http://localhost:5555/beneficiaire/detailBenef/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}` // Utilisez le token JWT stocké dans localStorage
+                }
+            })
             .then((response) => {
-                setFirstName(response.data.firstName);
-                setLastName(response.data.lastName)
-                setIban(response.data.iban)
-            }).catch((error) => {
-                alert('An error happened. Please Chack console');
+                const { firstName, lastName, iban } = response.data;
+                setFirstName(firstName);
+                setLastName(lastName);
+                setIban(iban);
+            })
+            .catch((error) => {
+                enqueueSnackbar('Une erreur s\'est produite lors du chargement des données', { variant: 'error' });
                 console.log(error);
             });
-    }, [])
+        }
+    }, [id, enqueueSnackbar]);
 
     const handleModifierBenef = () => {
         const data = {
@@ -31,19 +40,25 @@ const ModifierBenef = () => {
             lastName,
             iban,
         };
+        if (token) {
         axios
-            .put(`http://localhost:5555/beneficiaire/modifierBenef/${id}`, data)
+            .put(`http://localhost:5555/beneficiaire/modifierBenef/${id}`, data, {
+                headers: {
+                    Authorization: `Bearer ${token}` // Utilisez le token JWT stocké dans localStorage
+                }
+            })
             .then(() => {
-                enqueueSnackbar('bénéficiaire modifié avec succès', { variant: 'success' });
+                enqueueSnackbar('Bénéficiaire modifié avec succès', { variant: 'success' });
                 navigate('/beneficiaire');
             })
             .catch((error) => {
-                enqueueSnackbar('Error', { variant: 'error' });
+                enqueueSnackbar('Erreur lors de la modification du bénéficiaire', { variant: 'error' });
                 console.log(error);
             });
+        }
     };
-    return (
 
+    return (
         <div className='p-4'>
             <BackButton />
             <h1 className='text-3xl my-4'>Modifier un bénéficiaire</h1>
@@ -80,7 +95,7 @@ const ModifierBenef = () => {
                 </button>
             </div>
         </div>
-    )
+    );
 };
 
-export default ModifierBenef
+export default ModifierBenef;

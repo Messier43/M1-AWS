@@ -3,22 +3,29 @@ import React, { useEffect, useState } from 'react';
 import { AiOutlineEdit } from 'react-icons/ai';
 import { BsInfoCircle } from 'react-icons/bs';
 import { MdOutlineAddBox, MdOutlineDelete } from 'react-icons/md';
-import { Link } from 'react-router-dom'; // Importer Link et useParams depuis react-router-dom
+import { Link } from 'react-router-dom';
+import LogoutButton from '../../components/logoutButton';
 
 const Beneficiaire = () => {
     const [benefs, setBenef] = useState([]);
-    //const { id } = useParams();
+    const token = localStorage.getItem('token'); // Récupérer le token JWT du stockage local
 
     useEffect(() => {
-        axios
-            .get(`http://localhost:5555/beneficiaire/afficherBenef`)
-            .then((response) => {
-                setBenef(response.data.data);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    }, []);
+        if (token) { // Vérifier si le token existe avant de faire la requête
+            axios
+                .get(`http://localhost:5555/beneficiaire/afficherBenef`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`, // Inclure le token dans l'en-tête de la requête
+                    },
+                })
+                .then((response) => {
+                    setBenef(response.data.data);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
+    }, []); // Exécuter l'effet uniquement lorsque le token change
 
     return (
         <div className='p-4'>
@@ -35,7 +42,8 @@ const Beneficiaire = () => {
                         <th className='border border-slate-600 rounded-md'>Nom</th>
                         <th className='border border-slate-600 rounded-md'>Prénom</th>
                         <th className='border border-slate-600 rounded-md'>IBAN</th>
-                        <th className='border border-slate-600 rounded-md'>Action</th>
+                        <th className='border border-slate-600 rounded-md'>ACTION</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
@@ -62,6 +70,7 @@ const Beneficiaire = () => {
                     ))}
                 </tbody>
             </table>
+            <LogoutButton/>
         </div>
     );
 };

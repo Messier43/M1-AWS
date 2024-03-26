@@ -1,20 +1,31 @@
 import IBAN from 'iban';
+import jwt from "jsonwebtoken";
 import Benef from "../models/benef.js";
 
 export const afficherBenef = async (request, response) => {
     try {
+        // Extraire le token JWT de l'en-tête d'autorisation
+        const token = request.headers.authorization.split(' ')[1];
+        
+        // Vérifier et décoder le token JWT pour obtenir l'identifiant de l'utilisateur
+        const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+        const userId = decodedToken.userId;
+        console.log(userId);
 
-        const benefs = await Benef.find({ deleted: { $ne: true } });
+        // Recherche des bénéficiaires associés à l'utilisateur identifié
+        const benefs = await Benef.find({ utilisateur: userId, deleted: { $ne: true } }).populate('utilisateur');
 
+        // Retourner les bénéficiaires trouvés
         response.status(200).json({
             count: benefs.length,
             data: benefs
-
         });
     } catch (error) {
+        // En cas d'erreur, renvoyer un message d'erreur
         response.status(500).json({ error: error.message });
     }
 }
+
 
 export const detailBenef = async (request, response) => {
     try {
@@ -34,25 +45,34 @@ export const detailBenef = async (request, response) => {
 export const ajouterBenef = async (request, response) => {
     try {
         const { firstName, lastName, iban } = request.body;
-
+        
         // Vérifier si l'IBAN est valide
         if (!IBAN.isValid(iban)) {
             return response.status(400).json({ error: "Invalid IBAN" });
         }
 
-        // Créer un nouveau bénéficiaire
+        // Extraire le token JWT de l'en-tête Authorization
+        const token = request.headers.authorization.split(' ')[1];
+        
+        // Vérifier et décoder le token JWT pour obtenir l'identifiant de l'utilisateur
+        const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+        const userId = decodedToken.userId;
+        
+        // Poursuivre avec l'ajout du bénéficiaire
         const newBenef = new Benef({
             firstName,
             lastName,
             iban,
+            utilisateur: userId // Assigner l'identifiant de l'utilisateur au bénéficiaire
         });
-
         await newBenef.save();
+        
         response.status(201).json({ message: "Beneficiary created successfully" });
     } catch (error) {
         response.status(500).json({ error: error.message });
     }
 };
+
 
 export const modifierBenef = async (request, response) => {
     try {

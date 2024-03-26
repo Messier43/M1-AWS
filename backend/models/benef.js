@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 
 const benefSchema = new mongoose.Schema({
-
     firstName: {
         type: String,
         required: true
@@ -14,21 +13,21 @@ const benefSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    utilisateur: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'User'
+    },
     deleted: {
         type: Boolean,
         default: false
     }
-
-    },
+    
+},
     {
-    timestamps: true,
-});
+        timestamps: true,
+    });
 
-const Benef = mongoose.model('Benef', benefSchema) // benefs
+const Benef = mongoose.model('Benef', benefSchema); // benefs
 
 export default Benef;
-
-    // user: {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'User' // référence le modèle User
-    // }

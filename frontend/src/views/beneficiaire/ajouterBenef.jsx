@@ -12,14 +12,20 @@ const AjouterBenef = () => {
     const { enqueueSnackbar } = useSnackbar();
 
     const handleAjouterBenef = () => {
+        const token = localStorage.getItem('token'); // Récupérer le token JWT du stockage local
+
         const data = {
             firstName,
             lastName,
             iban
         };
-
+        if (token) {
         axios
-            .post('http://localhost:5555/beneficiaire/ajouterBenef', data) // Assurez-vous que l'URL est correcte
+            .post('http://localhost:5555/beneficiaire/ajouterBenef', data, {
+                headers: {
+                    Authorization: `Bearer ${token}`, // Inclure le token dans l'en-tête de la requête
+                },
+            })
             .then(() => {
                 enqueueSnackbar('Bénéficiaire ajouté avec succès', { variant: 'success' });
                 navigate('/beneficiaire');
@@ -28,6 +34,7 @@ const AjouterBenef = () => {
                 enqueueSnackbar('Erreur lors de l\'ajout du bénéficiaire', { variant: 'error' });
                 console.log(error);
             });
+        }
     };
 
     return (

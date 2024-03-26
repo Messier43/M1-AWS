@@ -17,7 +17,9 @@ const Login = () => {
 
         axios
             .post('http://localhost:5555/auth/login', data)
-            .then(() => {
+            .then((response) => {
+                const { token } = response.data;
+                localStorage.setItem('token', token); // Stockage du token JWT dans le localStorage
                 enqueueSnackbar('Connexion réussie', { variant: 'success' });
                 navigate('/beneficiaire');
             })

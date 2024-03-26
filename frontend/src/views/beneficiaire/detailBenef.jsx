@@ -6,16 +6,24 @@ import BackButton from '../../components/BackButton';
 const DetailBenef = () => {
     const [benef, setBenef] = useState({});
     const { id } = useParams();
+    const token = localStorage.getItem('token');
 
     useEffect(() => {
+        if (token) {
         axios
-            .get(`http://localhost:5555/beneficiaire/detailBenef/${id}`)
+            .get(`http://localhost:5555/beneficiaire/detailBenef/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`, // Inclure le token dans l'en-tête de la requête
+                },
+            })
+
             .then((response) => {
                 setBenef(response.data);
             })
             .catch((error) => {
                 console.log(error);
             });
+        }
     }, [id]);
 
     return (

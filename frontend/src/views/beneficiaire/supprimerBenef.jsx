@@ -1,29 +1,39 @@
 import axios from 'axios';
 import { useSnackbar } from 'notistack';
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import BackButton from '../../components/BackButton';
 
-
 const SupprimerBenef = () => {
-    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const { id } = useParams();
     const { enqueueSnackbar } = useSnackbar();
 
-    const SupprimerBenef = () => {
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            enqueueSnackbar('Vous devez être connecté pour effectuer cette action', { variant: 'error' });
+            navigate('/login'); // Rediriger vers la page de connexion si l'utilisateur n'est pas connecté
+        }
+    }, [enqueueSnackbar, navigate]);
+
+    const handleSupprimerBenef = () => {
+        if (token) {
         axios
-            .delete(`http://localhost:5555/beneficiaire/supprimerBenef/${id}`)
+            .delete(`http://localhost:5555/beneficiaire/supprimerBenef/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}` // Utilisez le token JWT stocké dans localStorage
+                }
+            })
             .then(() => {
-                setLoading(false);
-                enqueueSnackbar('bénéficiaire supprimé avec succès', { variant: 'success' });
+                enqueueSnackbar('Bénéficiaire supprimé avec succès', { variant: 'success' });
                 navigate('/beneficiaire');
             })
             .catch((error) => {
-                alert('An error happened. Please Chack console');
-                enqueueSnackbar('Error', { variant: 'error' });
+                enqueueSnackbar('Erreur lors de la suppression du bénéficiaire', { variant: 'error' });
                 console.log(error);
             });
+        }
     };
 
     return (
@@ -35,13 +45,13 @@ const SupprimerBenef = () => {
 
                 <button
                     className='p-4 bg-red-600 text-white m-8 w-full'
-                    onClick={SupprimerBenef}
+                    onClick={handleSupprimerBenef}
                 >
-                    oui, supprimer
+                    Oui, supprimer
                 </button>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default SupprimerBenef
+export default SupprimerBenef;
