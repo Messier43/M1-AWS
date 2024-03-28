@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 // import produitRouter from "./routes/produits.js";
 import cors from 'cors';
 import benefRouter from "./routes/benefs.js";
+import soldeRouter from "./routes/soldes.js";
 import authRouter from "./routes/users.js";
 
 dotenv.config();
@@ -23,9 +24,8 @@ app.use('/auth', authRouter);
 
 app.use('/beneficiaire', benefRouter);
 
+app.use('/solde',soldeRouter)
 
-
-// app.use('/produits', produitRouter)
 
 mongoose
     .connect(process.env.mongoDBURL)
