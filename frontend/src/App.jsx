@@ -14,6 +14,9 @@ import AjouterVirement from "./views/virement/ajouterVirement";
 import DetailVirement from "./views/virement/detailVirement";
 import Virement from "./views/virement/virement";
 
+import AjouterSolde from "./views/solde/ajouterSolde";
+import Solde from "./views/solde/solde";
+
 const App = () => {
   return (
     <Routes>
@@ -27,9 +30,17 @@ const App = () => {
       <Route path='/modifierBenef/:id' element={<ModifierBenef />} />
       <Route path='/supprimerBenef/:id' element={<SupprimerBenef />} />
 
+      <Route path='/solde' element={<Solde />} />
+      <Route path='/ajouterSolde' element={<AjouterSolde />} />
+
       <Route path='/virement' element={<Virement />} />
-      <Route path='/ajoutervirement' element={<AjouterVirement />} />
-      <Route path='/detailvirement/:id' element={<DetailVirement />} />
+      <Route path='/ajouterVirement' element={<AjouterVirement />} />
+      <Route path='/detailVirement/:id' element={<DetailVirement />} />
+
+
+
+
+
 
     </Routes>
   )
